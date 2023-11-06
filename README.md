@@ -4,9 +4,37 @@ An application for producing star charts and animations using data from the ESA'
 
 ## Examples
 
-[This animation into the Large Magellanic Cloud](https://www.youtube.com/watch?v=5mAb7wOL8_0)
+**Orion's sword:** The result of the command
+
+`./gaiamap -object "Orion's sword" -radius 5 -h 2048`
+
+![Orion's sword plot](assets/sword.png)
+
+**Westerlund 2:** A plot of a star cluster with proper motion arrows
+
+`./gaiamap -object "Westerlund 2" -radius 1 -dist -h 2048 -pm`
+
+![Westerlund 2 plot](assets/west2.png)
+
+**Globular cluster:** A plot of Omega Centauri, in printable colors
+
+`./gaiamap -object "Omega Centauri" -neg -radius 20 -small -nonames -h 2048`
+
+![Omega Centauri plot](assets/omecen.png)
+
+**Zoom animation:** 
+
+[This animation into 30 Dor in the Large Magellanic Cloud](https://www.youtube.com/watch?v=5mAb7wOL8_0)
 
 ## Download data
+
+The application uses Gaia DR3 data that has been extracted and cross-referenced with other astronomical catalogs and databases to provide additional information about sources, such as spectral type, distance estimates from Bailer-Jones 2021, or alternate designations. The data can be downloaded from [the codehappy.net website here.](https://www.codehappy.net/stars/gaia-degrees.html) The full-sky dataset is ~34 GB compressed and over 120 GB uncompressed; if you are only interested in certain portions of the sky, you may download only the declination ranges that you require.
+
+Uncompress the downloaded data into a folder named `degrees/`; this folder should be in the same directory as the gaiamap executable.
+
+## Build the application
+
+This app depends on [libcodehappy](https://github.com/codehappy-net/libcodehappy). It has no other non-stdlib dependencies. The `make.sh` script shows an example build (just point g++ to the correct folders for your includes/library archive file.)
 
 ## Most important command line options
 
@@ -16,7 +44,7 @@ Maps are output to a file named `output.png`.
 
 *Usage notes:* Declination may be written in decimal degrees form or in degrees/arcminutes/arcsesconds form: for example `30.61` and `30d36m36s` refer to the same DEC value. You can give a single value for `-dec` and use the `-radius` option to define the valid coordinate range, or you can give two right ascension values separated by a comma, e.g. `-14.15,-13.85`. See also `-ra` for right ascension (range) and `-object` for aiming the plot at the named object.
 
-`-dist`: render distance estimates for sources on the plot.
+`-dist`: render distance estimates and spectral types for sources on the plot.
 
 `-h`: the height of the output map in pixels.
 
@@ -65,6 +93,8 @@ Maps are output to a file named `output.png`.
 `-close`: only plot objects estimated to be this close or closer
 
 *Usage notes:* Takes one argument: the maximum distance in light years.
+
+`-dark`: set the background color to black, instead of navy blue.
 
 `-decadj`: the declination value to use as the base for non-rectangular projection
 
