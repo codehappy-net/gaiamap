@@ -6,7 +6,7 @@ An application for producing star charts and animations using data from the ESA'
 
 **Orion's sword:** The result of the command
 
-`./gaiamap -object "Orion's sword" -radius 5 -h 2048`
+`./gaiamap -object "Orion's sword" -radius 5 -dist -h 2048`
 
 ![Orion's sword plot](assets/sword.png)
 
